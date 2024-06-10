@@ -1,0 +1,56 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int[,] matriz = new int[5, 5];
+        int negativos = 0;
+        int somaPositivos = 0;
+        int somaPrimos = 0;
+
+        Random random = new Random();
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                matriz[i, j] = random.Next(-20, 21); // números aleatórios entre -20 e 20
+                Console.Write(matriz[i, j] + "\t");
+
+                if (matriz[i, j] < 0)
+                {
+                    negativos++;
+                }
+                else if (matriz[i, j] > 0 && EhPrimo(matriz[i, j]))
+                {
+                    somaPrimos += matriz[i, j];
+                }
+                else if (matriz[i, j] > 0)
+                {
+                    somaPositivos += matriz[i, j];
+                }
+            }
+            Console.WriteLine();
+        }
+
+        Console.WriteLine("Quantidade de números negativos: " + negativos);
+        Console.WriteLine("Soma dos números positivos: " + somaPositivos);
+        Console.WriteLine("Soma dos números primos: " + somaPrimos);
+    }
+
+    static bool EhPrimo(int num)
+    {
+        if (num <= 1) return false;
+        if (num == 2) return true;
+        if (num % 2 == 0) return false;
+
+        for (int i = 3; i <= Math.Sqrt(num); i += 2)
+        {
+            if (num % i == 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}

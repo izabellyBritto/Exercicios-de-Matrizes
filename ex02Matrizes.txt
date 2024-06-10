@@ -1,0 +1,43 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int[,] matriz = new int[2, 4];
+        int[] elementosEntre12e20 = new int[2];
+        int somaPares = 0;
+        int quantidadePares = 0;
+
+        Random random = new Random();
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                matriz[i, j] = random.Next(1, 31); // números aleatórios entre 1 e 30
+                Console.Write(matriz[i, j] + "\t");
+
+                if (matriz[i, j] >= 12 && matriz[i, j] <= 20)
+                {
+                    elementosEntre12e20[i]++;
+                }
+
+                if (matriz[i, j] % 2 == 0)
+                {
+                    somaPares += matriz[i, j];
+                    quantidadePares++;
+                }
+            }
+            Console.WriteLine();
+        }
+
+        Console.WriteLine("Quantidade de elementos entre 12 e 20 em cada linha:");
+        for (int i = 0; i < 2; i++)
+        {
+            Console.WriteLine("Linha " + (i + 1) + ": " + elementosEntre12e20[i]);
+        }
+
+        double mediaPares = quantidadePares > 0 ? (double)somaPares / quantidadePares : 0;
+        Console.WriteLine("Média dos elementos pares: " + mediaPares);
+    }
+}
